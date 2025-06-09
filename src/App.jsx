@@ -139,11 +139,12 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
       <div className="app-landing">
         <header className="app-header">
           <div className="start-section column-layout">
+          <img src="https://instant-events.vercel.app/icon-512.png"  class="icon-image" alt="Icon"></img>
             <button
               className="button-85 start-button"
               onClick={() => setShowForm(true)}
             >
-              Instant Events
+              Create Event
             </button>
             <span className="subtitle below-text">
               <span
@@ -152,7 +153,7 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
               >
                 calendar_add_on
               </span>
-              Create calendar events in seconds
+              Calendar events in seconds
             </span>
           </div>
         </header>
@@ -174,7 +175,7 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
       <header className="app-header">
         <h1>Event Details</h1>
         <p className="subtitle">
-          <i>* Marks Required</i>
+          <i>* Required Field</i>
         </p>
         <button
           className="button-85"

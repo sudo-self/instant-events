@@ -205,7 +205,7 @@ button {
   height: calc(100% + 4px);
   animation: glowing-button-85 20s linear infinite;
   transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 @keyframes glowing-button-85 {
@@ -229,7 +229,7 @@ button {
   background: #222;
   left: 0;
   top: 0;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .share-button {
@@ -262,6 +262,7 @@ button {
 }
 
 /* Messages */
+
 .message {
   padding: 1rem;
   border-radius: 4px;
@@ -308,7 +309,7 @@ button {
   background-color: #4a6bff;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 5px;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -563,6 +564,12 @@ button {
   opacity: 0.7;
   text-align: center;
 }
+
+.icon-image {
+  width: 100px;
+  height: 100px;
+}
+
 
 @media (max-width: 768px) {
   .app-container {
