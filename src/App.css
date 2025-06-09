@@ -202,24 +202,9 @@ button {
   border: none;
 }
 
-.share-button {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.share-button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-}
-
-.download-button {
-  background-color: transparent;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color) !important;
-}
 
 .download-button:hover {
-  background-color: rgba(100, 108, 255, 0.1);
+  background-color: #f2645d ;
   transform: translateY(-1px);
 }
 
@@ -286,12 +271,6 @@ button {
   object-fit: contain;
 }
 
-.qr-code {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-}
 
 /* Footer styles */
 .footer-link {
