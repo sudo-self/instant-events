@@ -49,6 +49,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: inherit;
 }
 
 body {
@@ -79,6 +80,7 @@ body {
   flex-direction: column;
   justify-content: flex-start;
   min-height: 600px;
+  font-family: inherit;
 }
 
 .app-header {
@@ -97,7 +99,7 @@ body {
 }
 
 .app-header .subtitle {
-  color: inherit;
+  color: #6f7171;
   opacity: 0.8;
   font-size: 1rem;
 }
@@ -114,6 +116,7 @@ body {
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1rem;
+  font-family: inherit;
 }
 
 .form-group label {
@@ -122,6 +125,7 @@ body {
   color: var(--label-color);
   display: block;
   margin-bottom: 0.25rem;
+  font-family: inherit;
 }
 
 .form-group input,
@@ -135,6 +139,7 @@ body {
   color: var(--text-color);
   font-size: 1rem;
   transition: all 0.2s;
+  font-family: inherit;
 }
 
 .form-group input:focus,
@@ -154,6 +159,13 @@ body {
   color: var(--placeholder-color);
   opacity: 0.7;
   font-family: inherit;
+}
+
+/* Ensuring "res" class uses correct font */
+.res {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-color);
 }
 
 /* DateTime group layout */
@@ -239,6 +251,7 @@ button {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  font-family: inherit;
 }
 
 .error {
@@ -259,6 +272,7 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  font-family: inherit;
 }
 
 /* Image styles */
@@ -288,6 +302,7 @@ button {
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   z-index: 1000;
+  font-family: inherit;
 }
 
 .footer-link a {
@@ -345,3 +360,4 @@ button {
     padding: 0.5rem 1rem;
   }
 }
+

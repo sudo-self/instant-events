@@ -138,8 +138,8 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
     return (
       <div className="app-landing">
         <header className="app-header">
+        <img src="./calendar.svg" width="100px" hieght="auto"></img>
           <div className="start-section column-layout">
-          <img src="https://instant-events.vercel.app/icon-512.png"  class="icon-image" alt="Icon"></img>
             <button
               className="button-85 start-button"
               onClick={() => setShowForm(true)}
@@ -164,10 +164,11 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>Event Details</h1>
+               <img src="./calendar.svg" width="100px" hieght="auto"></img>
         <p className="subtitle">
           <i>* Required Field</i>
         </p>
+        
         <button
           className="button-85"
           onClick={resetForm}
