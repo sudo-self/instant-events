@@ -1,4 +1,6 @@
+
 /* Default Light Theme */
+
 
 :root {
   --primary-color: #4285f4;
@@ -42,6 +44,18 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: system-ui, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+input,
+textarea,
+.button-85 {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
 .app-container {
@@ -127,20 +141,11 @@ body {
   justify-content: center;
 }
 
-.qr-code {
-  width: 70px;
-  height: 70px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
 .material-symbols-sharp {
   font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   font-size: 20px;
   vertical-align: middle;
 }
-
-
 
 /* Date-Time group */
 
@@ -185,6 +190,19 @@ body {
 
 /* CSS */
 
+
+  justify-content: center;
+}
+
+.button-85 {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  min-width: 200px;
+  text-align: center;
+}
+
+/* Glowing Button */
+
 .button-85 {
   padding: 0.6em 2em;
   border: none;
@@ -228,18 +246,6 @@ body {
   border-radius: 10px;
 }
 
-@keyframes glowing-button-85 {
-  0% {
-    background-position: 0 0;
-  }
-  50% {
-    background-position: 400% 0;
-  }
-  100% {
-    background-position: 0 0;
-  }
-}
-
 .button-85:after {
   z-index: -1;
   content: "";
@@ -250,6 +256,24 @@ body {
   left: 0;
   top: 0;
   border-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button-85:after {
+    background: #333;
+  }
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
 
 .share-button {
@@ -280,7 +304,6 @@ body {
   font-size: 1rem;
   color: var(--link-color);
 }
-
 
 /* Messages */
 
@@ -387,16 +410,20 @@ body {
   gap: 1rem;
 }
 
+<<<<<<< HEAD
 @media (max-width: 600px) {
   .split-group {
     grid-template-columns: 1fr;
   }
 }
 
-
 /* Responsive */
 
 @media (max-width: 600px) {
+  .split-group {
+    grid-template-columns: 1fr;
+  }
+
   .app-container {
     padding: 1rem;
   }
@@ -409,7 +436,3 @@ body {
     flex-direction: column;
   }
 }
-
-
-
-
