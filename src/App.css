@@ -1,4 +1,5 @@
-/* Default Light Theme */
+/* App.css */
+
 :root {
   --primary-color: #4285f4;
   --success-color: #34a853;
@@ -12,7 +13,6 @@
   --link-color: #666;
 }
 
-/* Dark Theme Overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     --primary-color: #8ab4f8;
@@ -28,7 +28,6 @@
   }
 }
 
-/* Global styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -54,7 +53,6 @@ body {
   justify-content: flex-start;
 }
 
-/* Header */
 .app-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -153,35 +151,20 @@ button {
   vertical-align: middle;
 }
 
-/* Date-Time group */
 .datetime-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-/* Buttons */
 .button-group {
   display: flex;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-.button {
-  flex: 1;
-  padding: 1rem;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* Buttons */
 
-/* CSS */
 .button-85 {
   padding: 0.6em 2em;
   border: none;
@@ -299,6 +282,7 @@ button {
 }
 
 /* Help text */
+
 .help-text {
   margin-top: 2rem;
   font-size: 0.9rem;
@@ -306,17 +290,8 @@ button {
   text-align: center;
 }
 
-/* Footer */
-.app-footer {
-  text-align: center;
-  margin-top: 2rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-color);
-  color: var(--link-color);
-  font-size: 0.9rem;
-}
-
 /* Landing screen */
+
 .app-landing {
   display: flex;
   flex-direction: column;
@@ -342,7 +317,8 @@ button {
   background-color: #3751d9;
 }
 
-/* Footer Link */
+/* Footer */
+
 .footer-link {
   position: fixed;
   bottom: 20px;
@@ -373,6 +349,7 @@ button {
 }
 
 /* Responsive */
+
 @media (max-width: 600px) {
   .app-container {
     padding: 1rem;
@@ -387,3 +364,230 @@ button {
   }
 }
 
+:root {
+  --primary-color: #646cff;
+  --primary-hover: #535bf2;
+  --success-color: #4ade80;
+  --error-color: #f87171;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --text-color-light: #213547;
+  --bg-color: #242424;
+  --bg-color-light: #ffffff;
+  --card-bg: #1a1a1a;
+  --card-bg-light: #f9f9f9;
+  --border-color: #333;
+  --border-color-light: #e5e7eb;
+  --input-bg: #2d2d2d;
+  --input-bg-light: #ffffff;
+  --shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.4;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--text-color-light);
+    background-color: var(--bg-color-light);
+    --card-bg: var(--card-bg-light);
+    --border-color: var(--border-color-light);
+    --input-bg: var(--input-bg-light);
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 700px;
+}
+
+.app-container {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.app-header h1 {
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, var(--primary-color), #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.app-header .subtitle {
+  color: inherit;
+  opacity: 0.8;
+  font-size: 1rem;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--input-bg);
+  color: inherit;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.2);
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.datetime-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button {
+  flex: 1;
+  padding: 0.6rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.share-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.share-button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+.download-button {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.download-button:hover {
+  background-color: rgba(100, 108, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.message {
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error {
+  background-color: rgba(248, 113, 113, 0.1);
+  color: var(--error-color);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.success {
+  background-color: rgba(74, 222, 128, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.help-text {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  opacity: 0.7;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1.2rem;
+  }
+
+  .datetime-group {
+    grid-template-columns: 1fr;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0.5rem;
+  }
+
+  .app-container {
+    padding: 1rem;
+  }
+}

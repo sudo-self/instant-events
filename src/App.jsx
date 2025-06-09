@@ -1,3 +1,5 @@
+
+
 import { useState } from "react";
 import "./App.css";
 
@@ -267,18 +269,6 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
 
         {error && <div className="message error">{error}</div>}
         {success && <div className="message success">{success}</div>}
-
-        <div className="help-text">
-          <footer className="footer-link">
-            <a
-              href="https://instant-events.vercel.app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instant-Events
-            </a>
-          </footer>
-        </div>
       </main>
     </div>
   );
