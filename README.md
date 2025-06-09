@@ -18,4 +18,6 @@ This is a simple React-based web app that allows users to create calendar events
 - CSS (for styling)
 - Web Share API for sharing `.ics` files
 
+- <a href="https://instant-events.vercel.app">Create Event</a><br />
+
 
