@@ -1,53 +1,53 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 export default function App() {
   const [showForm, setShowForm] = useState(false);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
-  const [start, setStart] = useState('');
-  const [end, setEnd] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [start, setStart] = useState("");
+  const [end, setEnd] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const sanitizeTitle = (text) => text.replace(/[<>:"/\\|?*]+/g, '-');
+  const sanitizeTitle = (text) => text.replace(/[<>:"/\\|?*]+/g, "-");
 
   const resetForm = () => {
-    setTitle('');
-    setDescription('');
-    setLocation('');
-    setStart('');
-    setEnd('');
-    setError('');
-    setSuccess('');
+    setTitle("");
+    setDescription("");
+    setLocation("");
+    setStart("");
+    setEnd("");
+    setError("");
+    setSuccess("");
     setShowForm(false);
   };
 
   const formatICSDate = (datetime) => {
-    if (!datetime) return '';
+    if (!datetime) return "";
     const date = new Date(datetime);
-    return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+    return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
   };
 
   const validateForm = () => {
     if (!title.trim()) {
-      setError('Event title is required');
+      setError("Event title is required");
       return false;
     }
     if (!start) {
-      setError('Start time is required');
+      setError("Start time is required");
       return false;
     }
     if (!end) {
-      setError('End time is required');
+      setError("End time is required");
       return false;
     }
     if (new Date(start) >= new Date(end)) {
-      setError('End time must be after start time');
+      setError("End time must be after start time");
       return false;
     }
-    setError('');
+    setError("");
     return true;
   };
 
@@ -75,28 +75,30 @@ DESCRIPTION:Reminder
 ACTION:DISPLAY
 END:VALARM
 END:VEVENT
-END:VCALENDAR`.replace(/\n/g, '\r\n');
+END:VCALENDAR`.replace(/\n/g, "\r\n");
   };
 
   const shareICS = async () => {
     if (!validateForm()) return;
 
     const icsContent = generateICS();
-    const file = new File([icsContent], `${title}.ics`, { type: 'text/calendar' });
+    const file = new File([icsContent], `${title}.ics`, {
+      type: "text/calendar",
+    });
 
     if (navigator.canShare?.({ files: [file] })) {
       try {
         await navigator.share({
-          title: title || 'Calendar Event',
-          text: description || 'Tap to add this event to your calendar.',
+          title: title || "Calendar Event",
+          text: description || "Tap to add this event to your calendar.",
           files: [file],
         });
-        setError('');
-        setSuccess('Event shared successfully!');
+        setError("");
+        setSuccess("Event shared successfully!");
         setTimeout(() => resetForm(), 3000);
       } catch (err) {
-        if (err.name !== 'AbortError') {
-          setError('Error sharing the event. Please download the file.');
+        if (err.name !== "AbortError") {
+          setError("Error sharing the event. Please download the file.");
           console.error(err);
         }
       }
@@ -110,24 +112,24 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
     if (!validateForm()) return;
 
     const icsContent = generateICS();
-    const blob = new Blob([icsContent], { type: 'text/calendar' });
+    const blob = new Blob([icsContent], { type: "text/calendar" });
     const url = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = `${title || 'event'}.ics`;
+    a.download = `${title || "event"}.ics`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
-    setSuccess('Event downloaded successfully!');
+    setSuccess("Event downloaded successfully!");
     setTimeout(() => resetForm(), 3000);
   };
 
   const handleDateTimeChange = (setter) => (e) => {
     setter(e.target.value);
-    if (success) setSuccess('');
+    if (success) setSuccess("");
   };
 
   if (!showForm) {
@@ -139,10 +141,13 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
               className="button-85 start-button"
               onClick={() => setShowForm(true)}
             >
-              Calendar Events
+              Instant Events
             </button>
             <span className="subtitle below-text">
-              <span className="material-symbols-sharp" style={{ verticalAlign: 'middle', marginRight: '0.4rem' }}>
+              <span
+                className="material-symbols-sharp"
+                style={{ verticalAlign: "middle", marginRight: "0.4rem" }}
+              >
                 calendar_add_on
               </span>
               Create calendar events in seconds
@@ -150,8 +155,12 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
           </div>
         </header>
         <footer className="footer-link">
-          <a href="https://instant-events.vercel.app" target="_blank" rel="noopener noreferrer">
-            instant-events.vercel.app
+          <a
+            href="https://instant-events.vercel.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instant-Events
           </a>
         </footer>
       </div>
@@ -162,24 +171,30 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
     <div className="app-container">
       <header className="app-header">
         <h1>Event Details</h1>
-        <p className="subtitle">(sharing optional)</p>
-        <button className="button-85" onClick={resetForm} style={{ marginBottom: '1rem' }}>
-          ⬅ Back
+        <p className="subtitle">
+          <i>* Marks Required</i>
+        </p>
+        <button
+          className="button-85"
+          onClick={resetForm}
+          style={{ marginBottom: "1rem" }}
+        >
+          Back
         </button>
       </header>
 
       <main className="form-container">
         <div className="form-group">
-          <label htmlFor="title">Event Title *</label>
+          <label htmlFor="title">Title *</label>
           <input
             id="title"
             type="text"
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
-              if (success) setSuccess('');
+              if (success) setSuccess("");
             }}
-            placeholder="Meeting with team"
+            placeholder="Team Meeting"
             required
             aria-label="Event Title"
           />
@@ -192,9 +207,9 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
-              if (success) setSuccess('');
+              if (success) setSuccess("");
             }}
-            placeholder="Details about the event"
+            placeholder="Description of the event"
             rows={3}
             aria-label="Event Description"
           />
@@ -208,9 +223,9 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
             value={location}
             onChange={(e) => {
               setLocation(e.target.value);
-              if (success) setSuccess('');
+              if (success) setSuccess("");
             }}
-            placeholder="Virtual or in-person"
+            placeholder="virtual meeting"
             aria-label="Event Location"
           />
         </div>
@@ -224,7 +239,7 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
               value={start}
               onChange={handleDateTimeChange(setStart)}
               required
-              aria-label="Event Start Time"
+              aria-label="Start Time"
             />
           </div>
 
@@ -236,7 +251,7 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
               value={end}
               onChange={handleDateTimeChange(setEnd)}
               required
-              aria-label="Event End Time"
+              aria-label="End Time"
             />
           </div>
         </div>
@@ -254,7 +269,15 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
         {success && <div className="message success">{success}</div>}
 
         <div className="help-text">
-          <p>* Required fields</p>
+          <footer className="footer-link">
+            <a
+              href="https://instant-events.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instant-Events
+            </a>
+          </footer>
         </div>
       </main>
     </div>

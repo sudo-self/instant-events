@@ -72,6 +72,20 @@ body {
 }
 
 /* Form */
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+}
+
+::placeholder {
+  font-family: inherit;
+  color: var(--link-color);
+  opacity: 0.6;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -130,12 +144,14 @@ body {
 }
 
 .material-symbols-sharp {
-  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-variation-settings:
+    "FILL" 1,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
   font-size: 20px;
   vertical-align: middle;
 }
-
-
 
 /* Date-Time group */
 .datetime-group {
@@ -262,7 +278,6 @@ body {
   color: var(--link-color);
 }
 
-
 /* Messages */
 .message {
   padding: 1rem;
@@ -371,7 +386,4 @@ body {
     flex-direction: column;
   }
 }
-
-
-
 

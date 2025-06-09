@@ -127,47 +127,6 @@ body {
   gap: 1rem;
 }
 
-.button-group {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-button {
-  flex: 1;
-  padding: 0.6rem;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.share-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-}
-
-.share-button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-1px);
-}
-
-.download-button {
-  background-color: transparent;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-}
-
-.download-button:hover {
-  background-color: rgba(100, 108, 255, 0.1);
-  transform: translateY(-1px);
-}
-
 .message {
   padding: 0.8rem;
   border-radius: 8px;
