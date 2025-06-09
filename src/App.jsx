@@ -157,15 +157,6 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
             </span>
           </div>
         </header>
-        <footer className="footer-link">
-          <a
-            href="https://instant-events.vercel.app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Instant-Events
-          </a>
-        </footer>
       </div>
     );
   }
