@@ -6,6 +6,7 @@ export default function App() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [location, setLocation] = useState('');
+  const [attendees, setAttendees] = useState('');
   const [start, setStart] = useState('');
   const [end, setEnd] = useState('');
   const [error, setError] = useState('');
@@ -17,6 +18,7 @@ export default function App() {
     setTitle('');
     setDescription('');
     setLocation('');
+    setAttendees('');
     setStart('');
     setEnd('');
     setError('');
@@ -31,21 +33,11 @@ export default function App() {
   };
 
   const validateForm = () => {
-    if (!title.trim()) {
-      setError('Event title is required');
-      return false;
-    }
-    if (!start) {
-      setError('Start time is required');
-      return false;
-    }
-    if (!end) {
-      setError('End time is required');
-      return false;
-    }
+    if (!title.trim()) return setError('Event title is required'), false;
+    if (!start) return setError('Start time is required'), false;
+    if (!end) return setError('End time is required'), false;
     if (new Date(start) >= new Date(end)) {
-      setError('End time must be after start time');
-      return false;
+      return setError('End time must be after start time'), false;
     }
     setError('');
     return true;
@@ -55,6 +47,13 @@ export default function App() {
     const dtStart = formatICSDate(start);
     const dtEnd = formatICSDate(end);
     const dtStamp = formatICSDate(new Date());
+
+    const attendeeLines = attendees
+      ? attendees
+          .split(',')
+          .map(email => `ATTENDEE;CN=${email.trim()}:mailto:${email.trim()}`)
+          .join('\r\n')
+      : '';
 
     return `BEGIN:VCALENDAR
 VERSION:2.0
@@ -69,6 +68,7 @@ SUMMARY:${title}
 DESCRIPTION:${description}
 LOCATION:${location}
 STATUS:CONFIRMED
+${attendeeLines}
 BEGIN:VALARM
 TRIGGER:-PT30M
 DESCRIPTION:Reminder
@@ -80,9 +80,10 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
 
   const shareICS = async () => {
     if (!validateForm()) return;
-
     const icsContent = generateICS();
-    const file = new File([icsContent], `${title}.ics`, { type: 'text/calendar' });
+    const file = new File([icsContent], `${sanitizeTitle(title)}.ics`, {
+      type: 'text/calendar',
+    });
 
     if (navigator.canShare?.({ files: [file] })) {
       try {
@@ -91,74 +92,41 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
           text: description || 'Tap to add this event to your calendar.',
           files: [file],
         });
-        setError('');
         setSuccess('Event shared successfully!');
-        setTimeout(() => resetForm(), 3000);
+        setTimeout(resetForm, 3000);
       } catch (err) {
         if (err.name !== 'AbortError') {
-          setError('Error sharing the event. Please download the file.');
           console.error(err);
+          setError('Error sharing event. Try downloading instead.');
         }
       }
     } else {
-      addToCalendar();
-      setTimeout(() => resetForm(), 3000);
+      addToCalendar(); // fallback
     }
   };
 
   const addToCalendar = () => {
     if (!validateForm()) return;
-
     const icsContent = generateICS();
     const blob = new Blob([icsContent], { type: 'text/calendar' });
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${title || 'event'}.ics`;
-    document.body.appendChild(a);
+    a.download = `${sanitizeTitle(title) || 'event'}.ics`;
     a.click();
-    document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
     setSuccess('Event downloaded successfully!');
-    setTimeout(() => resetForm(), 3000);
+    setTimeout(resetForm, 3000);
   };
 
-  const handleDateTimeChange = (setter) => (e) => {
+  const handleChange = (setter) => (e) => {
     setter(e.target.value);
-    if (success) setSuccess('');
+    setSuccess('');
   };
 
-  if (!showForm) {
-    return (
-      <div className="app-landing">
-        <header className="app-header">
-          <div className="start-section column-layout">
-            <button
-              className="button-85 start-button"
-              onClick={() => setShowForm(true)}
-            >
-              Calendar Events
-            </button>
-            <span className="subtitle below-text">
-              <span className="material-symbols-sharp" style={{ verticalAlign: 'middle', marginRight: '0.4rem' }}>
-                calendar_add_on
-              </span>
-              Create calendar events in seconds
-            </span>
-          </div>
-        </header>
-        <footer className="footer-link">
-          <a href="https://instant-events.vercel.app" target="_blank" rel="noopener noreferrer">
-            instant-events.vercel.app
-          </a>
-        </footer>
-      </div>
-    );
-  }
-
-  return (
+  return showForm ? (
     <div className="app-container">
       <header className="app-header">
         <h1>Event Details</h1>
@@ -175,10 +143,7 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
             id="title"
             type="text"
             value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-              if (success) setSuccess('');
-            }}
+            onChange={handleChange(setTitle)}
             placeholder="Meeting with team"
             required
             aria-label="Event Title"
@@ -190,10 +155,7 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
           <textarea
             id="description"
             value={description}
-            onChange={(e) => {
-              setDescription(e.target.value);
-              if (success) setSuccess('');
-            }}
+            onChange={handleChange(setDescription)}
             placeholder="Details about the event"
             rows={3}
             aria-label="Event Description"
@@ -206,12 +168,21 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
             id="location"
             type="text"
             value={location}
-            onChange={(e) => {
-              setLocation(e.target.value);
-              if (success) setSuccess('');
-            }}
+            onChange={handleChange(setLocation)}
             placeholder="Virtual or in-person"
             aria-label="Event Location"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="attendees">Attendees (comma-separated emails)</label>
+          <input
+            id="attendees"
+            type="text"
+            value={attendees}
+            onChange={handleChange(setAttendees)}
+            placeholder="email1@example.com, email2@example.com"
+            aria-label="Event Attendees"
           />
         </div>
 
@@ -222,7 +193,7 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
               id="start"
               type="datetime-local"
               value={start}
-              onChange={handleDateTimeChange(setStart)}
+              onChange={handleChange(setStart)}
               required
               aria-label="Event Start Time"
             />
@@ -234,7 +205,7 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
               id="end"
               type="datetime-local"
               value={end}
-              onChange={handleDateTimeChange(setEnd)}
+              onChange={handleChange(setEnd)}
               required
               aria-label="Event End Time"
             />
@@ -258,5 +229,27 @@ END:VCALENDAR`.replace(/\n/g, '\r\n');
         </div>
       </main>
     </div>
+  ) : (
+    <div className="app-landing">
+      <header className="app-header">
+        <div className="start-section column-layout">
+          <button className="button-85 start-button" onClick={() => setShowForm(true)}>
+            Calendar Events
+          </button>
+          <span className="subtitle below-text">
+            <span className="material-symbols-sharp" style={{ verticalAlign: 'middle', marginRight: '0.4rem' }}>
+              calendar_add_on
+            </span>
+            Create calendar events in seconds
+          </span>
+        </div>
+      </header>
+      <footer className="footer-link">
+        <a href="https://instant-events.vercel.app" target="_blank" rel="noopener noreferrer">
+          instant-events.vercel.app
+        </a>
+      </footer>
+    </div>
   );
 }
+
