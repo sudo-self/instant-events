@@ -105,6 +105,9 @@ body {
 }
 
 /* Form Styles */
+
+
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -136,10 +139,11 @@ body {
   border-radius: 8px;
   border: 1px solid var(--border-color);
   background-color: var(--input-bg);
-  color: var(--text-color);
+  color: #000000;;
   font-size: 1rem;
   transition: all 0.2s;
   font-family: inherit;
+  text: #000000;
 }
 
 .form-group input:focus,
