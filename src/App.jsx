@@ -153,7 +153,7 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
               >
                 calendar_add_on
               </span>
-              Calendar events in seconds<br />
+              Instant Calendar Events<br />
             </span>
                         
           </div>

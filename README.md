@@ -1,4 +1,5 @@
 # Calendar Event Generator
+
 #### <a href="https://instant-events.vercel.app">Create Event</a><br />
 
 This is a simple React-based web app that allows users to create calendar events and share them with others. The app generates `.ics` (iCalendar) files, which users can either download or share directly via their device's share functionality.
@@ -19,5 +20,3 @@ This is a simple React-based web app that allows users to create calendar events
 - Web Share API for sharing `.ics` files
 
 - <a href="https://instant-events.vercel.app">Create Event</a><br />
-
-
