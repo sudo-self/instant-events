@@ -1,4 +1,4 @@
-
+// App.jsx
 
 import { useState } from "react";
 import "./App.css";
@@ -147,13 +147,14 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
               Create Event
             </button>
             <span className="subtitle below-text">
+            <a href="https://instant-events.vercel.app">
               <span
                 className="material-symbols-sharp"
                 style={{ verticalAlign: "middle", marginRight: "0.4rem" }}
               >
                 calendar_add_on
               </span>
-              Instant Calendar Events<br />
+            Instant Events</a><br />
             </span>
                         
           </div>
