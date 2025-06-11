@@ -1,4 +1,4 @@
-
+/* App.css */
 
 :root {
   --primary-color: #646cff;
@@ -52,17 +52,6 @@
   font-family: inherit;
 }
 
-a {
-  text-decoration: none;
-  color: grey;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-
-
 body {
   margin: 0;
   min-height: 100vh;
@@ -80,6 +69,17 @@ body {
   max-width: 700px;
 }
 
+a {
+  text-decoration: none;
+  color: grey;
+  transition: text-decoration 0.3s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
 .app-container {
   background-color: var(--card-bg);
   border-radius: 12px;
@@ -92,7 +92,6 @@ body {
   justify-content: flex-start;
   min-height: 600px;
   font-family: inherit;
-  overflow: hidden;
 }
 
 .app-header {
@@ -115,6 +114,10 @@ body {
   opacity: 0.8;
   font-size: 1rem;
 }
+
+/* Form Styles */
+
+
 
 .form-container {
   display: flex;
@@ -166,6 +169,7 @@ body {
   resize: vertical;
 }
 
+/* Placeholder styling */
 ::placeholder {
   color: var(--placeholder-color);
   opacity: 0.7;
@@ -215,12 +219,13 @@ button {
   transform: translateY(-1px);
 }
 
+/* Special button style */
 .button-85 {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #020202;
+  color: #000;
   cursor: pointer;
   border: 3px solid;
   padding: 0.25em 0.5em;
@@ -236,6 +241,7 @@ button {
   left: 5px;
 }
 
+/* Message styles */
 .message {
   padding: 0.8rem;
   border-radius: 8px;
