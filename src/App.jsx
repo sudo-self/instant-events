@@ -191,7 +191,7 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
               setTitle(e.target.value);
               if (success) setSuccess("");
             }}
-            placeholder="Team Meeting"
+            placeholder="name of the event"
             required
             aria-label="Event Title"
           />
@@ -206,7 +206,7 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
               setDescription(e.target.value);
               if (success) setSuccess("");
             }}
-            placeholder="Description of the event"
+            placeholder="(optional)"
             rows={3}
             aria-label="Event Description"
           />
@@ -222,7 +222,7 @@ END:VCALENDAR`.replace(/\n/g, "\r\n");
               setLocation(e.target.value);
               if (success) setSuccess("");
             }}
-            placeholder="virtual meeting"
+            placeholder="(optional)"
             aria-label="Event Location"
           />
         </div>
